@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace lab03_calc
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow: Window
     {
         public MainWindow()
@@ -29,14 +26,13 @@ namespace lab03_calc
         private void ButtonDigit_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            if (Component.Text != "0")
+            if (Component.Text == "0")
             {
-                Component.Text += button.Content.ToString();
-                
+                Component.Text = button.Content.ToString();
             }
             else
             {
-                Component.Text = button.Content.ToString();
+                Component.Text += button.Content.ToString();
             }
         }
         private void ButtonSign_Click(object sender, RoutedEventArgs e)
@@ -56,7 +52,10 @@ namespace lab03_calc
         private void ButtonDot_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            Component.Text += button.Content.ToString();
+            if (!Component.Text.Contains('.'))
+            {
+                Component.Text += button.Content.ToString();
+            }
         }
         private void ButtonEqual_Click(object sender, RoutedEventArgs e)
         {
@@ -68,18 +67,29 @@ namespace lab03_calc
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            if(button.Name == "ButtonC")
+            if (button.Name == "ButtonC")
             {
                 Operation.Text = "0";
                 Component.Text = "0";
             }
-            else if(button.Name == "ButtonCE")
+            else if (button.Name == "ButtonCE")
             {
                 Component.Text = "0";
             }
             else if (button.Name == "ButtonBackspace")
             {
-                Component.Text = Component.Text.Remove(Component.Text.Length-1, 1);
+                if (Component.Text != "0")
+                {
+                    if(Component.Text.Length == 1)
+                    {
+                        Component.Text = "0";
+                    }
+                    else
+                    {
+                        Component.Text = Component.Text.Remove(Component.Text.Length - 1, 1);
+                    }
+                    
+                }
             }
         }
     }

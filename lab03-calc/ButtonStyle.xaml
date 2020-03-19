@@ -13,7 +13,8 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border CornerRadius="4" Background="{TemplateBinding Background}">
                         <Grid>
-                            <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" 
+                                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
                         </Grid>
                     </Border>
 
@@ -31,8 +32,8 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        
+
     </Style>
 </ResourceDictionary>
-    
+
 <!--"#423E3E"-->

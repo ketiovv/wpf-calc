@@ -1,0 +1,13 @@
+do naprawy:
+
+- uciekanie poza zakres Int32 -> (warunek->wyświetl kom za duża liczba?)
+- długie liczby nie mieszczą się w okienku -> (skalowanie?)
+- dzielenie przez zero -> infinity -> (wyświetl kom nie dziel przez 0?)
+- jak dostaje 2.0000000 to nie zaokrągla do 2 -> (zaokrągaj?)
+- min width i min height wyświetlacza i przycisków
+
+=========================================================
+
+- DONE >>>>>>>>> druga kropka w liczbie sypie program
+- DONE >>>>>>>>> backspace przy 0 i jednej cyfrze
+- DONE >>>>>>>>> problem z kropką/przecinkiem -> (zmiana symbolu w systemie)
