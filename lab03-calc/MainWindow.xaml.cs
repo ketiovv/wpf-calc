@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,43 +27,57 @@ namespace lab03_calc
         private void ButtonDigit_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            if (Component.Text == "0")
+            if (isNumber(Component.Text))
             {
-                Component.Text = button.Content.ToString();
-            }
-            else
-            {
-                Component.Text += button.Content.ToString();
+                if (Component.Text == "0")
+                {
+                    Component.Text = button.Content.ToString();
+                }
+                else
+                {
+                    Component.Text += button.Content.ToString();
+                }
             }
         }
         private void ButtonSign_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            if (Component.Text != "0" && Operation.Text == "0")
+            if (isNumber(Component.Text) && !Component.Text.EndsWith("."))
             {
-                Operation.Text = Component.Text + " " + button.Content.ToString();
-                Component.Text = 0.ToString();
-            }
-            else if (Component.Text != "0" && Operation.Text != "0")
-            {
-                Operation.Text += " " + Component.Text + " " + button.Content.ToString();
-                Component.Text = 0.ToString();
+
+
+                if (Component.Text != "0" && Operation.Text == "0")
+                {
+                    Operation.Text = Component.Text + " " + button.Content.ToString();
+                    Component.Text = 0.ToString();
+                }
+                else if (Component.Text != "0" && Operation.Text != "0")
+                {
+                    Operation.Text += " " + Component.Text + " " + button.Content.ToString();
+                    Component.Text = 0.ToString();
+                }
             }
         }
         private void ButtonDot_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            if (!Component.Text.Contains('.'))
+            if (isNumber(Component.Text))
             {
-                Component.Text += button.Content.ToString();
+                if (!Component.Text.Contains('.'))
+                {
+                    Component.Text += button.Content.ToString();
+                }
             }
         }
         private void ButtonEqual_Click(object sender, RoutedEventArgs e)
         {
-            string math = (Operation.Text += Component.Text);
-            string value = new DataTable().Compute(math, null).ToString();
-            Operation.Text = "0";
-            Component.Text = value;
+            if (isNumber(Component.Text) && !Component.Text.EndsWith("."))
+            {
+                string math = (Operation.Text += Component.Text);
+                Operation.Text = "0";
+                Component.Text = calculate(math);
+            }
+
         }
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -78,9 +93,9 @@ namespace lab03_calc
             }
             else if (button.Name == "ButtonBackspace")
             {
-                if (Component.Text != "0")
+                if (Component.Text != "0" && isNumber(Component.Text))
                 {
-                    if(Component.Text.Length == 1)
+                    if (Component.Text.Length == 1)
                     {
                         Component.Text = "0";
                     }
@@ -88,9 +103,31 @@ namespace lab03_calc
                     {
                         Component.Text = Component.Text.Remove(Component.Text.Length - 1, 1);
                     }
-                    
+
                 }
             }
+        }
+        private string calculate(string math)
+        {
+            math = Regex.Replace
+                (
+                    math, @"\d+(\.\d+)?", m =>
+                    {
+                        var x = m.ToString();
+                        return x.Contains(".") ? x : string.Format("{0}.0", x);
+                    }
+                );
+            double value = Math.Round(Convert.ToDouble(new DataTable().Compute(math, string.Empty)), 8);
+            return (value < -9999999999 || value > 9999999999) ? "out of range" : value.ToString();
+        }
+        private bool isNumber(string text)
+        {
+            double temp;
+            if (double.TryParse(text, out temp))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

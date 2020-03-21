@@ -1,13 +1,15 @@
-do naprawy:
-
-- uciekanie poza zakres Int32 -> (warunek->wyświetl kom za duża liczba?)
-- długie liczby nie mieszczą się w okienku -> (skalowanie?)
-- dzielenie przez zero -> infinity -> (wyświetl kom nie dziel przez 0?)
-- jak dostaje 2.0000000 to nie zaokrągla do 2 -> (zaokrągaj?)
-- min width i min height wyświetlacza i przycisków
+TODO:
+- rozbudowanie - dodanie nowych funkcji
+- skalowanie przy większych liczbach, poprawa responsywności
+- wyszczególnione komunikaty
 
 =========================================================
 
 - DONE >>>>>>>>> druga kropka w liczbie sypie program
 - DONE >>>>>>>>> backspace przy 0 i jednej cyfrze
-- DONE >>>>>>>>> problem z kropką/przecinkiem -> (zmiana symbolu w systemie)
+- DONE >>>>>>>>> problem z kropką/przecinkiem
+- DONE >>>>>>>>> jak dostaje 2.0000000 to nie zaokrągla do 2
+- DONE(temp) >>>>>>>(ograniczono zakres do -9999999999 < x < 9999999999)
+	długie liczby nie mieszczą się w okienku
+	min width i min height wyświetlacza i przycisków
+	dzielenie przez zero -> infinity

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab03_calc"
         mc:Ignorable="d"
-        Title="Calc" Height="580" Width="370">
+        Title="Calc" Height="580" Width="385">
     <Border Padding="1" Background="#2A2828">
         <Grid>
             <Grid.RowDefinitions>
