@@ -117,8 +117,16 @@ namespace lab03_calc
                         return x.Contains(".") ? x : string.Format("{0}.0", x);
                     }
                 );
-            double value = Math.Round(Convert.ToDouble(new DataTable().Compute(math, string.Empty)), 8);
-            return (value < -9999999999 || value > 9999999999) ? "out of range" : value.ToString();
+            try
+            {
+                double value = Math.Round(Convert.ToDouble(new DataTable().Compute(math, string.Empty)), 8);
+                return (value < -9999999999 || value > 9999999999) ? "out of range" : value.ToString();
+            }
+            catch (DivideByZeroException)
+            {
+                return "zero divide";
+            }
+            
         }
         private bool isNumber(string text)
         {
