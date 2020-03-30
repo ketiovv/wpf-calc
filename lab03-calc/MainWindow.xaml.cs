@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +24,7 @@ namespace lab03_calc
     {
         public MainWindow()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
             InitializeComponent();
         }
         private void ButtonDigit_Click(object sender, RoutedEventArgs e)
@@ -126,7 +129,7 @@ namespace lab03_calc
             {
                 return "zero divide";
             }
-            
+
         }
         private bool isNumber(string text)
         {
