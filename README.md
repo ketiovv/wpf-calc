@@ -1,2 +1,2 @@
 # wpf_calc
-A simple desktop calculator created with C#.
+A simple desktop calculator created with C# WPF.
