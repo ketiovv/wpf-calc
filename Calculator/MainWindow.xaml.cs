@@ -18,7 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-namespace lab03_calc
+namespace Calculator
 {
     public partial class MainWindow: Window
     {
